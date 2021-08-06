@@ -1,6 +1,8 @@
 package edu.miracosta.cs113;
 
 import java.util.LinkedList;
+import java.util.Objects;
+
 
 public class Polynomial {
 	private LinkedList<Term> listOfTerms; // Terms List
@@ -74,13 +76,13 @@ public class Polynomial {
 					}
 				}
 
-				//case 4: the exponents aren't equal so just add the term
+				// case 4: the exponents aren't equal so just add the term
 				else if (i == (this.listOfTerms.size() - 1)) {
 					listOfTerms.add(term);
-					break; 
+					break;
 				} else if (listOfTerms.get(i + 1).getExponent() < term.getExponent()) {
 					listOfTerms.add(i + 1, term);
-					break; 
+					break;
 
 				}
 			}
@@ -130,4 +132,15 @@ public class Polynomial {
 		return list;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Polynomial other = (Polynomial) obj;
+		return Objects.equals(listOfTerms, other.listOfTerms);
+	}
 }
